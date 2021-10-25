@@ -1,0 +1,7 @@
+server:
+  port: 8081
+application:
+  url: http://localhost:9000
+  accessKey: xtarefas
+  secretKey: xtarefas
+  bucket: document

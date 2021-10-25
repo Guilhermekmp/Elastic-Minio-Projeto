@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20210719170000-1" author="guilherme.pires"
+               objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="sq_anexo"
+                        startValue="1" />
+
+        <createTable tableName="tb_anexo">
+            <column name="id" type="bigint"
+                    autoIncrement="${autoIncrement}" remarks="ID DO ANEXO">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="filename" type="text"
+                    remarks="NOME DO ARQUIVO DO ANEXO">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="file"
+                    remarks="ARQUIVO DO ANEXO"
+                    type="text">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="uuid"
+                    remarks="ID DO ANEXO NO MINIO"
+                    type="text">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="tarefa"
+                    remarks="TAREFA RELACIONADA AO ANEXO"
+                    type="bigint">
+                <constraints nullable="false"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20210719170000-2" author="guilherme.pires"
+               objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <addForeignKeyConstraint
+                constraintName="fk_anexol_tarefa"
+                referencedTableName="tb_tarefa"
+                referencedColumnNames="id"
+                baseColumnNames="tarefa"
+                baseTableName="tb_anexo"/>
+
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20210719172000-1" author="guilherme.pires"
+               objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+
+        <createSequence sequenceName="sq_tarefa"
+                        startValue="1" />
+
+        <createTable tableName="tb_tarefa">
+
+            <column name="id" type="bigint"
+                    remarks="ID DA TAREFA"
+                    autoIncrement="${autoIncrement}">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="nome" type="varchar"
+                    remarks="NOME TAREFA">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="data_inicio" type="timestamp"
+                    remarks="DATA DO INICIO DA TAREFA">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="data_conclusao" type="timestamp"
+                    remarks="DATA DA CONCLUSAO DA TAREFA">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="status" type="boolean"
+                    remarks="STATUS DA TAREFA">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="responsavel" type="bigint"
+                    remarks="RESPONSAVEL DA TAREFA">
+                <constraints nullable="true"/>
+            </column>
+
+        </createTable>
+    </changeSet>
+
+    <changeSet id="20210719172000-2" author="guilherme.pires"
+                           objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+    <addForeignKeyConstraint
+            constraintName="fk_responsavel_tarefa"
+            referencedTableName="tb_responsavel"
+            referencedColumnNames="id"
+            baseColumnNames="responsavel"
+            baseTableName="tb_tarefa"/>
+
+</changeSet>
+
+</databaseChangeLog>

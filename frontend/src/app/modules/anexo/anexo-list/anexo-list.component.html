@@ -1,0 +1,30 @@
+<p-card>
+    <h3>Anexo</h3>
+    <div class="ui-float-label div-pesquisa">
+        <input pInputText [(ngModel)]="anexoFiltro.querry" class="pesquisa" type="text"/>
+        <button (onClick)="carregarTabela()" type="button" class="ui-button-rounded ui-button-info" [label]="'Pesquisar'" pButton></button>
+    </div>
+
+    <p-table #tabela [value]="anexos.content" [lazy]="true" (onLazyLoad)="carregarTabela()" [paginator]="true"
+    [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
+    [currentPageReportTemplate]="'Página {currentPage} de {totalPages}'" [totalRecords]="anexos.totalElements"
+    [scrollable]="true">
+
+        <ng-template pTemplate="header">
+            <tr>
+                <th>Arquivo</th>
+                <th>Nome Arquivo</th>
+                <th>Uuid</th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-anexo>
+            <tr>
+                <td>{{anexo.file}}</td>
+                <td>{{anexo.fileName}}</td>
+                <td>{{anexo.uuid}}</td>
+            </tr>
+        </ng-template>
+
+    </p-table>
+
+</p-card>

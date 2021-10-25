@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="20210719171000-1" author="guilherme.pires"
+               objectQuotingStrategy="QUOTE_ALL_OBJECTS">
+        <createSequence sequenceName="sq_responsavel"
+                        startValue="1" />
+
+        <createTable tableName="tb_responsavel">
+            <column name="id" type="bigint"
+                    autoIncrement="${autoIncrement}" remarks="ID DO RESPONSAVEL">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+
+            <column name="nome" type="varchar(255)"
+                    remarks="NOME DO RESPONSAVEL">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="email"
+                    remarks="EMAIL DO RESPONSAVEL"
+                    type="text">
+                <constraints nullable="false" />
+            </column>
+
+            <column name="data_nascimento" type="timestamp"
+                    remarks="DATA DE NASCIMENTO DO RESPONSAVEL">
+                <constraints nullable="false" />
+            </column>
+
+        </createTable>
+    </changeSet>
+
+
+</databaseChangeLog>
